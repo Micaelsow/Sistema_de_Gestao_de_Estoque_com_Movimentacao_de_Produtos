@@ -47,8 +47,14 @@ end
 loop do
   puts "Qual o tipo de movimentação? (1 - Entrada, 2 - Saída)"
   tipo = gets.chomp.strip
-  if tipo == "1"
+   if tipo.empty? || tipo.to_i.to_s != tipo
+    puts "A resposta é obrigatória. Tente novamente."
+      next
+   elsif tipo == "1"
     tipo = "Entrada"
-  else
+   elsif tipo == "2"
     tipo = "Saída"
+   else 
+    next
+   end
 
