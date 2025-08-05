@@ -52,9 +52,13 @@ loop do
       next
    elsif tipo == "1"
     tipo = "Entrada"
+    break
    elsif tipo == "2"
     tipo = "Saída"
+    break
    else 
+    puts "Opção inválida. Digite 1 para entrada e 2 para saída."
     next
    end
+  end
 
