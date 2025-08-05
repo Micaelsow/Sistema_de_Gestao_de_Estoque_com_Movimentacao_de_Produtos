@@ -1,5 +1,5 @@
 produtos = []
-
+movimentacoes = []
 loop do
   puts "Escreva o nome do produto(Obrigatório):"
   nome = gets.chomp.strip
@@ -43,3 +43,13 @@ produtos.each_with_index do |produto, index|
   puts " Quantidade em estoque: #{produto[:quantidade]}"
 
 end
+
+loop do
+  puts "Qual o tipo de movimentação? (1 - Entrada, 2 - Saída)"
+  tipo = gets.chomp.strip
+  if 
+    ipo == "1"
+    tipo = "Entrada"
+  else
+    tipo = "Saída"
+
