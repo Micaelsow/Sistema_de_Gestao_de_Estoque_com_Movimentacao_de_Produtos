@@ -47,8 +47,7 @@ end
 loop do
   puts "Qual o tipo de movimentação? (1 - Entrada, 2 - Saída)"
   tipo = gets.chomp.strip
-  if 
-    ipo == "1"
+  if tipo == "1"
     tipo = "Entrada"
   else
     tipo = "Saída"
