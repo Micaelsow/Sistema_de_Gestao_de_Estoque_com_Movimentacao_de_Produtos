@@ -13,10 +13,10 @@ loop do
 
   puts "Qual a quantidade inicial em estoque? (Obrigatório)"
   quantidade = gets.chomp.strip # Lê a quantidade e remove espaços em branco
-  if quantidade.empty? || quantidade.to_i.to_s != quantidade # Verifica se a quantidade é um número inteiro
+    if quantidade.empty? || quantidade.to_i.to_s != quantidade # Verifica se a quantidade é um número inteiro
     puts "A quantidade inicial é obrigatória e deve ser um número inteiro. Tente novamente"
-    next
-  end
+      next
+    end
 
   puts "Qual o preço do produto? (Opcional)"
   preco = gets.chomp.to_f
@@ -33,8 +33,9 @@ puts "Produto cadastrado com sucesso"
 
   puts "Deseja cadastrar outro produto? (s/n)"
   resposta = gets.chomp.strip.downcase # Converte a resposta para minúsculas
-  break if resposta != 's' # Se a resposta for diferente de 's', sai do loop
-end
+    break 
+        if resposta != 's' # Se a resposta for diferente de 's', sai do loop
+        end
 
 produtos.each_with_index do |produto, index|
   puts "Produto #{index + 1}"
@@ -54,18 +55,18 @@ loop do
 
   if escolha.empty? || escolha.to_i.to_s != escolha || escolha.to_i < 1 || escolha.to_i > produtos.size # Verifica se a caixa de entrada está vazia, ou se o número condiz com as opções disponíveis.
     puts "Escolha inválida. Tente novamente."
-    next
-  end
+      next
+    end
   puts "Qual o tipo de movimentação? (1 - Entrada, 2 - Saída)"
   tipo = gets.chomp.strip
    if tipo.empty? || tipo.to_i.to_s != tipo
     puts "A resposta é obrigatória. Tente novamente."
-      next
-   elsif tipo == "1"
+    next
+  elsif tipo == "1"
     tipo = "Entrada"
-   elsif tipo == "2"
+  elsif tipo == "2"
     tipo = "Saída"
-   else 
+  else 
     puts "Opção inválida. Digite 1 para entrada e 2 para saída."
     next
   end  
@@ -74,8 +75,28 @@ loop do
     quantidade_movimentação = gets.chomp.strip
     if quantidade_movimentação.empty? || quantidade_movimentação.to_i.to_s != quantidade_movimentação || quantidade_movimentação.to_i <= 0 # Verifica se a quantidade de movimentação é um número inteiro positivo
       puts "A quantidade de movimentação é obrigatória e deve ser um número inteiro positivo. Tente novamente."
-      next
+        next
+      end
+    produto_escolhido = produtos[escolha.to_i - 1] 
+    qtd_mov = quantidade_movimentação.to_i 
+
+    if tipo == "Entrada"
+      produto_escolhido[:quantidade] += qtd_mov
+    else
+      if qtd_mov > produto_escolhido[:quantidade]
+        puts "Erro: não há estoque suficiente para essa saída."
+        next
+      end
+      produto_escolhido[:quantidade] -= qtd_mov
+    end
+
+    # Registra a movimentação (opcional)
+    movimentacoes << {
+      produto: produto_escolhido[:nome],
+      tipo: tipo,
+      quantidade: qtd_mov
+    }
+    puts "#{tipo} registrada com sucesso para o produto '#{produto_escolhido[:nome]}'"
+    break
+  end
 end
-break
-end
-  
