@@ -45,6 +45,21 @@ produtos.each_with_index do |produto, index|
 end
 
 loop do
+puts "Escolha um produto para registrar a movimentação:"
+   produtos.each_with_index do |produto, index|
+    puts "#{index + 1} - #{produto[:nome]}"
+  end
+
+  escolha = gets.chomp.strip
+  if escolha.empty? || escolha.to_i.to_s != escolha || escolha.to_i < 1 || escolha.to_i > produtos.size # Verifica se a caixa de entrada está vazia, ou se o número condiz com as opções disponíveis.
+    puts "Escolha inválida. Tente novamente."
+    next
+  else
+    break
+  end
+end
+
+loop do
   puts "Qual o tipo de movimentação? (1 - Entrada, 2 - Saída)"
   tipo = gets.chomp.strip
    if tipo.empty? || tipo.to_i.to_s != tipo
@@ -59,6 +74,10 @@ loop do
    else 
     puts "Opção inválida. Digite 1 para entrada e 2 para saída."
     next
-   end
-  end
+  end  
+end
 
+loop do 
+  puts "Qual a quantidade de #{tipo.downcase}?" 
+end
+  
