@@ -89,12 +89,22 @@ loop do
       produto_escolhido[:quantidade] -= qtd_mov
     end
 
-    # Registra a movimentação (opcional)
     movimentacoes << {
       produto: produto_escolhido[:nome],
       tipo: tipo,
-      quantidade: qtd_mov
+      quantidade: qtd_mov,
+      data: Time.now.strftime("%d/%m/%Y %H:%M")
     }
-    puts "#{tipo} registrada com sucesso para o produto '#{produto_escolhido[:nome]}'"
-    break
+
+    puts "Movimentações registradas:"
+    movimentacoes.each_with_index do |mov, i|
+    puts "Movimentação #{i + 1}"
+    puts " Produto: #{mov[:produto]}"
+    puts " Tipo: #{mov[:tipo]}"
+    puts "Quantidade: #{qtd_mov}"
+    puts " Data: #{mov[:data]}"
+    end
+    puts "Deseja registrar outra movimentação? (s/n)"
+    resposta = gets.chomp.strip.downcase
+      break if resposta != 's'
   end
