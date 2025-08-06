@@ -122,3 +122,7 @@ loop do
     produtos.each_with_index do |produto, index|
       puts "#{index + 1} - #{produto[:nome]}"
     end
+
+    print "Digite o número do produto: "
+    indice = gets.chomp.to_i - 1
+
