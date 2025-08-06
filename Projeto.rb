@@ -33,8 +33,7 @@ puts "Produto cadastrado com sucesso"
 
   puts "Deseja cadastrar outro produto? (s/n)"
   resposta = gets.chomp.strip.downcase # Converte a resposta para minúsculas
-    break 
-        if resposta != 's' # Se a resposta for diferente de 's', sai do loop
+    break if resposta != 's' # Se a resposta for diferente de 's', sai do loop
         end
 
 produtos.each_with_index do |produto, index|
@@ -99,4 +98,3 @@ loop do
     puts "#{tipo} registrada com sucesso para o produto '#{produto_escolhido[:nome]}'"
     break
   end
-end
