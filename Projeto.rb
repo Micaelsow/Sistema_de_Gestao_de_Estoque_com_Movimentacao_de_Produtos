@@ -108,3 +108,17 @@ loop do
     resposta = gets.chomp.strip.downcase
       break if resposta != 's'
   end
+  
+loop do
+  puts "\nDeseja atualizar ou excluir algum produto?"
+  puts "1 - Atualizar"
+  puts "2 - Excluir"
+  puts "3 - Sair"
+  print "Escolha: "
+  acao = gets.chomp.strip
+
+  if acao == "1"
+    puts "\nQual produto deseja atualizar?"
+    produtos.each_with_index do |produto, index|
+      puts "#{index + 1} - #{produto[:nome]}"
+    end
