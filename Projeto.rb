@@ -126,3 +126,32 @@ loop do
     print "Digite o número do produto: "
     indice = gets.chomp.to_i - 1
 
+    if indice < 0 || indice >= produtos.size
+      puts "Produto inválido."
+      next
+    end
+
+    produto = produtos[indice]
+
+    puts "Nome atual: #{produto[:nome]}"
+    print "Novo nome (pressione Enter para manter): "
+    novo_nome = gets.chomp.strip
+    produto[:nome] = novo_nome unless novo_nome.empty?
+
+    puts "Descrição atual: #{produto[:descricao]}"
+    print "Nova descrição (pressione Enter para manter): "
+    nova_descricao = gets.chomp.strip
+    produto[:descricao] = nova_descricao unless nova_descricao.empty?
+
+    puts "Quantidade atual: #{produto[:quantidade]}"
+    print "Nova quantidade (pressione Enter para manter): "
+    nova_quantidade = gets.chomp.strip
+    produto[:quantidade] = nova_quantidade.to_i unless nova_quantidade.empty?
+
+    puts "Preço atual: R$ #{'%.2f' % produto[:preco]}"
+    print "Novo preço (pressione Enter para manter): "
+    novo_preco = gets.chomp.strip
+    produto[:preco] = novo_preco.to_f unless novo_preco.empty?
+
+    puts "Produto atualizado com sucesso!"
+
