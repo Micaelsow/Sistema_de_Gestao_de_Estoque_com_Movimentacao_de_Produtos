@@ -155,3 +155,28 @@ loop do
 
     puts "Produto atualizado com sucesso!"
 
+  elsif acao == "2"
+    puts "\nQual produto deseja excluir?"
+    produtos.each_with_index do |produto, index|
+      puts "#{index + 1} - #{produto[:nome]}"
+    end
+
+    print "Digite o número do produto: "
+    indice = gets.chomp.to_i - 1
+
+    if indice < 0 || indice >= produtos.size
+      puts "Produto inválido."
+      next
+    end
+
+    removido = produtos.delete_at(indice)
+    puts "Produto '#{removido[:nome]}' excluído com sucesso."
+
+  elsif acao == "3"
+    puts "Saindo do menu de atualização/exclusão..."
+    break
+
+  else
+    puts "Opção inválida. Tente novamente."
+  end
+end
